@@ -1,0 +1,36 @@
+.tech-icon {
+  transition: transform 0.4s ease;
+}
+
+.tech-icon:hover {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.animate-icon {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.rotate-hover:hover {
+  animation: spin 0.6s ease-in-out;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
