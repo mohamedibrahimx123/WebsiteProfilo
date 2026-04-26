@@ -3,6 +3,8 @@ import Project from "./Project";
 
 import ImageProjectPerfume from "../assets/Screenshot 2026-03-18 163216.png";
 import ImageProjectFood from "../assets/Food.png";
+import ImageProjectDelivery from "../assets/Delivery-dashboard.png";
+import ImageProjectTask from "../assets/Task-management.png";
 
 import ImageProjectDragon from "../assets/Dragon.png";
 import ImageProjectRestaurant from "../assets/Food.png";
@@ -11,7 +13,7 @@ function Projects() {
   const projects = [
     {
       title: "Perfume E-commerce Store (Best Project)",
-      live: "https://mohamedibrahimx123.github.io/Perfume-Ecommerce",
+      live: "https://mohamedibrahimx123.github.io/Templete-Perfume-Website/",
       github: "https://github.com/mohamedibrahimx123/Templete-Perfume-Website",
       description:
         "A premium perfume e-commerce demo with modern UI and smooth animations.",
@@ -59,6 +61,26 @@ function Projects() {
       features: ["Landing Page", "Smooth Scroll", "Responsive Design"],
       image: ImageProjectRestaurant,
       accent: "#8b5cf6"
+    },
+    {
+      title: "Task Management App",
+      live: "https://mohamedibrahimx123.github.io/Task-mangement/",
+      github: "https://github.com/mohamedibrahimx123/Task-mangement",
+      description: "Task management app built with React and TypeScript.",
+      tech: ["React", "TypeScript"],
+      features: ["Task Management", "Responsive UI", "Productive Workflow"],
+      image: ImageProjectTask,
+      accent: "#06b6d4"
+    },
+    {
+      title: "Delivery Dashboard",
+      live: "https://mohamedibrahimx123.github.io/Delivery-dashboard/",
+      github: "https://github.com/mohamedibrahimx123/Delivery-dashboard",
+      description: "A React-based delivery dashboard with clean analytics-style UI.",
+      tech: ["React"],
+      features: ["Dashboard Layout", "Delivery Tracking", "Responsive Design"],
+      image: ImageProjectDelivery,
+      accent: "#22c55e"
     }
   ];
 
