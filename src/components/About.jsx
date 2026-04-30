@@ -179,7 +179,7 @@ function About() {
             </div>
 
             <a
-              href="https://mohamedibrahimx123.github.io/Perfume-Ecommerce"
+              href="https://mohamedibrahimx123.github.io/Templete-Perfume-Website/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-400 to-indigo-600 px-4 py-2 text-sm font-black text-black shadow-[0_25px_80px_rgba(0,0,0,0.35)] transition hover:-translate-y-0.5"
