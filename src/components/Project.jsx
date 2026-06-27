@@ -1,116 +1,131 @@
 import React from "react";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import { motion } from "framer-motion";
+import TiltCard from "./TiltCard";
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 35 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 80, damping: 15 },
+  },
+};
 
 function Project({ project }) {
-  const accent = project.accent || "#a855f7";
+  const accent = project.accent || "#22d3ee";
 
   return (
-    <article
-      className={[
-        "group relative overflow-hidden rounded-2xl border bg-white/5 shadow-[0_30px_120px_rgba(0,0,0,0.40)] transition-all duration-500 ease-out",
-        project.best
-          ? "border-purple-300/25 hover:border-purple-300/35"
-          : "border-white/10 hover:border-cyan-300/20 hover:-translate-y-[2px]"
-      ].join(" ")}
-      style={{
-        borderColor: project.best ? "rgba(168,85,247,0.35)" : undefined
-      }}
-    >
-      <div className="relative">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="h-56 w-full object-cover transition-transform duration-1000 group-hover:scale-[1.03]"
-        />
-
-        {/* Luxury sheen: subtle shimmer moving across the image */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-          aria-hidden="true"
+    <motion.div variants={cardVariants} className="h-full">
+      <TiltCard maxRotation={10} className="h-full rounded-3xl">
+        <article
+          className={[
+            "group h-full relative overflow-hidden rounded-3xl border bg-[#0d0f17]/45 backdrop-blur-md shadow-2xl transition-all duration-500 flex flex-col justify-between",
+            project.best
+              ? "border-purple-500/30 hover:border-purple-500/50"
+              : "border-white/5 hover:border-cyan-400/30"
+          ].join(" ")}
+          style={{
+            boxShadow: project.best ? "0 10px 30px -10px rgba(168,85,247,0.15)" : undefined
+          }}
         >
-          <div
-            className="absolute -left-full top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-18deg] opacity-90 transition-transform duration-1200 group-hover:translate-x-[260%]"
-          />
-        </div>
+          {/* Top visual block */}
+          <div>
+            <div className="relative overflow-hidden aspect-[16/10]">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent" />
+              {/* Glowing overlay filter */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0d0f17] via-black/30 to-transparent" />
 
-        <div className="absolute left-4 top-4">
-          {project.best && (
-            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-500/25 to-cyan-400/15 px-4 py-2 text-sm font-extrabold text-white/90">
-              🟡 Best Project
+              {/* Best Project Tag */}
+              {project.best && (
+                <div className="absolute left-4 top-4 z-20">
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 px-4 py-2 text-xs font-black uppercase tracking-wider text-white shadow-md">
+                    ★ Best Project
+                  </div>
+                </div>
+              )}
+
+              {/* Dynamic Actions overlay visible on hover */}
+              <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="flex gap-3 scale-90 group-hover:scale-100 transition-transform duration-300">
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-xs font-black uppercase tracking-widest text-black shadow-lg transition-transform hover:scale-105"
+                  >
+                    <FaExternalLinkAlt /> Live
+                  </a>
+                  {project.github && project.github !== "#" && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-xl bg-neutral-900 border border-white/10 px-5 py-2.5 text-xs font-black uppercase tracking-widest text-white shadow-lg transition-transform hover:scale-105"
+                    >
+                      <FaGithub /> Code
+                    </a>
+                  )}
+                </div>
+              </div>
             </div>
-          )}
-        </div>
 
-        <div className="absolute bottom-4 left-4 right-4 opacity-0 translate-y-[10px] transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
-          <div className="flex flex-wrap gap-2">
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 font-extrabold text-white/95 ring-1 ring-white/15 transition hover:bg-white/15"
-            >
-              <FaExternalLinkAlt /> Live
-            </a>
-            {project.github && project.github !== "#" && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-black/25 px-4 py-2 font-extrabold text-white/90 ring-1 ring-white/10 transition hover:bg-black/30"
-              >
-                <FaGithub /> Code
-              </a>
+            <div className="p-6">
+              <h3 className="text-xl font-black leading-tight bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent group-hover:text-cyan-300 transition-colors duration-300">
+                {project.title}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-white/60 font-semibold">
+                {project.description}
+              </p>
+            </div>
+          </div>
+
+          {/* Bottom details block */}
+          <div className="p-6 pt-0">
+            {/* Tech badges */}
+            <div className="flex flex-wrap gap-1.5">
+              {project.tech.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full border border-white/5 bg-white/5 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-white/70"
+                  style={{ borderColor: `${accent}40` }}
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            {/* Core features listing */}
+            <div className="mt-5 grid gap-2 grid-cols-2">
+              {project.features.slice(0, 4).map((f) => (
+                <div
+                  key={f}
+                  className="flex items-center gap-2 rounded-xl border border-white/5 bg-black/35 px-3 py-2 text-xs font-bold text-white/65"
+                >
+                  <span
+                    className="h-2 w-2 rounded-full shrink-0"
+                    style={{ backgroundColor: accent, boxShadow: `0 0 8px ${accent}` }}
+                  />
+                  <span className="truncate">{f}</span>
+                </div>
+              ))}
+            </div>
+
+            {project.features.length > 4 && (
+              <div className="mt-3 text-right text-[10px] font-black uppercase tracking-wider text-white/40">
+                +{project.features.length - 4} more features
+              </div>
             )}
           </div>
-        </div>
-      </div>
-
-      <div className="p-5">
-        <h3 className="text-lg font-black leading-tight transition-colors duration-300 group-hover:text-white/95">
-          {project.title}
-        </h3>
-        <p className="mt-2 text-sm leading-relaxed text-white/70">
-          {project.description}
-        </p>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          {project.tech.map((t) => (
-            <span
-              key={t}
-              className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-bold text-white/75"
-              style={{ borderColor: `${accent}55` }}
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-
-        <div className="mt-4 grid gap-2 sm:grid-cols-2">
-          {project.features.slice(0, 4).map((f) => (
-            <div
-              key={f}
-              className="flex items-center gap-2 rounded-xl border border-white/10 bg-black/15 px-3 py-2 text-sm font-semibold text-white/75"
-            >
-              <span
-                className="h-2.5 w-2.5 rounded-full"
-                style={{ backgroundColor: accent }}
-              />
-              {f}
-            </div>
-          ))}
-        </div>
-
-        {project.features.length > 4 && (
-          <div className="mt-3 text-xs text-white/55">
-            +{project.features.length - 4} more
-          </div>
-        )}
-      </div>
-    </article>
+        </article>
+      </TiltCard>
+    </motion.div>
   );
 }
 
 export default Project;
-
