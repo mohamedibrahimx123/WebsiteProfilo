@@ -1,49 +1,97 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { 
+  FaReact, FaAngular, FaJsSquare, FaHtml5, FaCss3Alt, 
+  FaGitAlt, FaGithub, FaAws, FaRocket, FaCheckDouble, 
+  FaSyncAlt, FaLayerGroup, FaCode, FaTools 
+} from "react-icons/fa";
+import { 
+  SiTypescript, SiNextdotjs, SiRedux, SiJest, 
+  SiTailwindcss, SiBootstrap, SiVite, SiVitest 
+} from "react-icons/si";
 import TiltCard from "./TiltCard";
 
-const SKILLS = {
-  "Core Front-End": ["React", "JavaScript (ES6+)", "HTML5", "CSS3", "Responsive UI"],
-  "Styling & UI": ["Tailwind", "Bootstrap", "Design Systems", "Accessibility", "Typography"],
-  "Frameworks & Tools": ["Next.js", "Vite", "Git & GitHub", "Component Architecture"],
-  "3D & Motion": ["Three.js", "React Three Fiber", "Framer Motion", "CSS Keyframes", "Micro-interactions"]
-};
+const TECH_CATEGORIES = [
+  {
+    id: "core",
+    name: "Core Languages & Foundations",
+    icon: <FaCode className="text-cyan-400" />,
+    skills: [
+      { name: "JavaScript (ES6+)", desc: "Modern syntax, async/await, closures, prototypes", level: "Expert" },
+      { name: "TypeScript", desc: "Strict typing, generics, interfaces, scalable codebases", level: "Advanced" },
+      { name: "HTML5", desc: "Semantic markup, SEO optimization, accessibility (a11y)", level: "Expert" },
+      { name: "CSS3", desc: "Flexbox, CSS Grid, custom properties, animations", level: "Expert" },
+      { name: "OOP (Object-Oriented Programming)", desc: "Encapsulation, inheritance, design patterns", level: "Advanced" },
+      { name: "Data Structures", desc: "Trees, graphs, hash maps, complexity analysis (O(n))", level: "Advanced" },
+    ]
+  },
+  {
+    id: "frameworks",
+    name: "Frameworks & Modern UI",
+    icon: <FaReact className="text-cyan-400" />,
+    skills: [
+      { name: "React.js", desc: "React 18/19, Custom Hooks, Server Components, Concurrent", level: "Expert" },
+      { name: "Next.js", desc: "App Router, SSR, SSG, ISR, API Routes, Edge Runtime", level: "Advanced" },
+      { name: "Angular", desc: "Component architecture, dependency injection, RxJS", level: "Proficient" },
+      { name: "Tailwind CSS", desc: "Utility-first design, custom configurations, Tailwind v4", level: "Expert" },
+      { name: "Bootstrap 5", desc: "Rapid grid prototyping, responsive mobile systems", level: "Expert" },
+      { name: "Framer Motion", desc: "3D physics, layoutId transitions, gesture animations", level: "Advanced" },
+    ]
+  },
+  {
+    id: "state_realtime",
+    name: "State & Real-Time Protocols",
+    icon: <FaSyncAlt className="text-indigo-400" />,
+    skills: [
+      { name: "RealTime Web (gRPC Protocols)", desc: "Protobuf, low-latency streaming, collision prevention", level: "Specialist" },
+      { name: "Redux Toolkit", desc: "Slices, RTK Query, normalized state management", level: "Advanced" },
+      { name: "Zustand", desc: "Lightweight, unopinionated, reactive global state", level: "Expert" },
+      { name: "Context API", desc: "Scoped React state providers, theme & auth management", level: "Expert" },
+      { name: "WebSockets & Event Streams", desc: "Instant bi-directional client-server communication", level: "Advanced" },
+    ]
+  },
+  {
+    id: "testing_quality",
+    name: "Testing & Code Quality",
+    icon: <FaCheckDouble className="text-purple-400" />,
+    skills: [
+      { name: "Unit Testing (Jest)", desc: "Automated test suites, snapshot testing, mocking", level: "Advanced" },
+      { name: "Vitest", desc: "Blazing fast Vite-native testing, coverage analysis", level: "Advanced" },
+      { name: "React Testing Library", desc: "User-centric integration and interaction testing", level: "Advanced" },
+      { name: "Clean Code Principles", desc: "DRY, SOLID, readable and maintainable codebase", level: "Core Philosophy" },
+      { name: "Code Reviewing", desc: "Mentoring engineers, enforcing best practices, PR reviews", level: "Lead Level" },
+      { name: "Production-Ready Thinking", desc: "Resilient error boundaries, fallback UIs, edge cases", level: "Lead Level" },
+    ]
+  },
+  {
+    id: "devops_perf",
+    name: "Performance & DevOps",
+    icon: <FaRocket className="text-pink-400" />,
+    skills: [
+      { name: "Lazy Loading & Code Splitting", desc: "Dynamic imports, bundle optimization, tree-shaking", level: "Advanced" },
+      { name: "Performance Optimization", desc: "Core Web Vitals, memoization, render profiling", level: "Expert" },
+      { name: "Git & GitHub", desc: "Gitflow, merge conflicts, interactive rebasing, actions", level: "Expert" },
+      { name: "GitHub Pages & Vercel", desc: "Automated branch deployment, custom domains, CI", level: "Expert" },
+      { name: "AWS Cloud", desc: "S3 hosting, CloudFront CDN, serverless configurations", level: "Proficient" },
+      { name: "Workflow & CI/CD Deployment", desc: "Automated pipelines, build validation, linting gates", level: "Advanced" },
+    ]
+  }
+];
 
 function Skills() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
+  const [activeFilter, setActiveFilter] = useState("all");
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { type: "spring", stiffness: 80, damping: 15 },
-    },
-  };
-
-  const tagVariants = {
-    hidden: { scale: 0.8, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: { type: "spring", stiffness: 100, damping: 10 },
-    },
-  };
+  const filteredCategories = activeFilter === "all" 
+    ? TECH_CATEGORIES 
+    : TECH_CATEGORIES.filter((c) => c.id === activeFilter);
 
   return (
-    <section id="skills" className="relative py-16 md:py-24 bg-black min-h-screen">
-      {/* Background glow overlay */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(1000px_520px_at_10%_0%,rgba(34,211,238,0.1),transparent_55%),radial-gradient(900px_520px_at_90%_90%,rgba(168,85,247,0.06),transparent_50%)]" />
+    <section id="tech-stack" className="relative py-16 md:py-24 bg-[#030303] min-h-screen text-white">
+      {/* Background radial glow */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(1000px_520px_at_10%_0%,rgba(34,211,238,0.1),transparent_55%),radial-gradient(900px_520px_at_90%_90%,rgba(168,85,247,0.08),transparent_50%)]" />
       
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        {/* Section Heading */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,88 +99,112 @@ function Skills() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-xs font-black uppercase tracking-wider text-cyan-400">
-            🛠️ My Capabilities
+          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3.5 py-1.5 text-xs font-black uppercase tracking-wider text-cyan-400">
+            ⚡ Complete Technical Competencies
           </div>
-          <h2 className="mt-4 text-4xl font-black tracking-tight md:text-5xl bg-gradient-to-r from-white via-cyan-100 to-indigo-100 bg-clip-text text-transparent">
-            Skills <span className="text-cyan-400">& Tools</span>
+          <h2 className="mt-4 text-3xl sm:text-5xl font-black tracking-tight bg-gradient-to-r from-white via-cyan-100 to-indigo-100 bg-clip-text text-transparent">
+            Tech <span className="text-cyan-400">Stack</span>
           </h2>
-          <p className="mt-4 text-white/70 leading-relaxed text-lg">
-            I build modern interfaces and care deeply about motion, responsiveness, layout flow, and user experience.
+          <p className="mt-4 text-white/75 leading-relaxed text-base sm:text-lg font-normal">
+            A comprehensive overview of my core engineering capabilities, real-time protocols, state management libraries, and production-tested standards.
           </p>
         </motion.div>
 
+        {/* Category Filter Tabs */}
+        <div className="mt-8 flex flex-wrap gap-2">
+          <button
+            onClick={() => setActiveFilter("all")}
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              activeFilter === "all"
+                ? "bg-cyan-400 text-black shadow-md shadow-cyan-400/20"
+                : "bg-white/5 border border-white/5 text-white/70 hover:text-white hover:bg-white/10"
+            }`}
+          >
+            All Competencies
+          </button>
+          {TECH_CATEGORIES.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveFilter(cat.id)}
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+                activeFilter === cat.id
+                  ? "bg-cyan-400 text-black shadow-md shadow-cyan-400/20"
+                  : "bg-white/5 border border-white/5 text-white/70 hover:text-white hover:bg-white/10"
+              }`}
+            >
+              {cat.name}
+            </button>
+          ))}
+        </div>
+
         {/* Categories Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="mt-12 grid gap-6 md:grid-cols-2"
-        >
-          {Object.entries(SKILLS).map(([group, items]) => (
-            <motion.div key={group} variants={cardVariants} className="h-full">
-              <TiltCard maxRotation={8} className="h-full rounded-3xl">
-                <div className="h-full rounded-3xl border border-white/5 bg-[#090b11]/50 p-6 shadow-2xl backdrop-blur-md transition-colors hover:border-cyan-400/30 flex flex-col justify-between">
-                  <div>
-                    <div className="text-xs font-black uppercase tracking-widest text-cyan-400">
-                      {group}
+        <div className="mt-10 flex flex-col gap-8">
+          {filteredCategories.map((category) => (
+            <motion.div
+              key={category.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="rounded-3xl border border-white/5 bg-[#090b14]/70 p-6 sm:p-8 backdrop-blur-xl shadow-2xl"
+            >
+              <div className="flex items-center gap-3 border-b border-white/5 pb-4">
+                <div className="text-xl">{category.icon}</div>
+                <h3 className="text-lg sm:text-xl font-black text-white">{category.name}</h3>
+              </div>
+
+              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {category.skills.map((skill) => (
+                  <TiltCard key={skill.name} maxRotation={6} className="h-full">
+                    <div className="h-full rounded-2xl border border-white/5 bg-white/5 p-4 transition-all hover:border-cyan-400/30 hover:bg-cyan-500/[0.04] flex flex-col justify-between">
+                      <div>
+                        <div className="flex items-center justify-between gap-2">
+                          <h4 className="text-sm font-black text-white">{skill.name}</h4>
+                          <span className="text-[10px] font-extrabold uppercase tracking-wider text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 px-2 py-0.5 rounded-full shrink-0">
+                            {skill.level}
+                          </span>
+                        </div>
+                        <p className="mt-2 text-xs text-white/60 leading-relaxed font-semibold">
+                          {skill.desc}
+                        </p>
+                      </div>
                     </div>
-                    <motion.div
-                      variants={{
-                        visible: {
-                          transition: {
-                            staggerChildren: 0.05,
-                          },
-                        },
-                      }}
-                      className="mt-6 flex flex-wrap gap-2"
-                    >
-                      {items.map((s) => (
-                        <motion.span
-                          key={s}
-                          variants={tagVariants}
-                          className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-black tracking-wide text-white/80 transition hover:bg-cyan-500/10 hover:border-cyan-400/35 hover:text-cyan-300"
-                        >
-                          {s}
-                        </motion.span>
-                      ))}
-                    </motion.div>
-                  </div>
-                  <div className="mt-6 border-t border-white/5 pt-4 text-[10px] font-black uppercase tracking-wider text-white/30">
-                    High Proficiency
-                  </div>
-                </div>
-              </TiltCard>
+                  </TiltCard>
+                ))}
+              </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Interactive Bottom Accent Block */}
+        {/* Engineering Philosophy Banner */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-8"
+          className="mt-12"
         >
-          <TiltCard maxRotation={4}>
-            <div className="rounded-3xl border border-white/15 bg-gradient-to-r from-cyan-950/20 via-black/40 to-pink-950/20 p-8 shadow-2xl backdrop-blur-md">
-              <h3 className="text-xl font-black bg-gradient-to-r from-cyan-400 to-pink-400 bg-clip-text text-transparent uppercase tracking-wider">
-                What you get when we work together
-              </h3>
-              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {[
-                  { title: "Premium UI Polish", desc: "Pixel perfect layouts, HSL color harmony, and gorgeous aesthetics." },
-                  { title: "Smooth Animations", desc: "Framer Motion, 3D physics, and reactive transitions." },
-                  { title: "Responsive Fluidity", desc: "Flawless rendering across phones, tablets, and wide screens." },
-                  { title: "Clean Modular Code", desc: "Dry component architecture and reusable hooks." }
-                ].map((item, idx) => (
-                  <div key={idx} className="rounded-2xl border border-white/5 bg-black/40 p-4 transition-colors hover:border-cyan-400/30">
-                    <div className="text-sm font-black text-white">{item.title}</div>
-                    <div className="mt-2 text-xs text-white/50 leading-relaxed font-semibold">{item.desc}</div>
-                  </div>
-                ))}
+          <TiltCard maxRotation={3}>
+            <div className="rounded-3xl border border-cyan-400/20 bg-gradient-to-r from-cyan-950/20 via-[#0a0d16] to-indigo-950/20 p-6 sm:p-8 backdrop-blur-xl">
+              <div className="grid gap-6 sm:grid-cols-3 text-center sm:text-left">
+                <div>
+                  <div className="text-xs font-black uppercase text-cyan-400 tracking-wider">⚡ Real-Time Architecture</div>
+                  <p className="mt-2 text-xs text-white/65 leading-relaxed font-semibold">
+                    Specialized in gRPC and WebSocket protocols ensuring concurrent users experience instantaneous data updates without latency.
+                  </p>
+                </div>
+                <div>
+                  <div className="text-xs font-black uppercase text-indigo-400 tracking-wider">🛡️ Clean Code & Reviewing</div>
+                  <p className="mt-2 text-xs text-white/65 leading-relaxed font-semibold">
+                    Enforcing maintainable code standards, OOP principles, and robust unit testing with Jest, Vitest, and RTL.
+                  </p>
+                </div>
+                <div>
+                  <div className="text-xs font-black uppercase text-pink-400 tracking-wider">🚀 Production-Ready Thinking</div>
+                  <p className="mt-2 text-xs text-white/65 leading-relaxed font-semibold">
+                    Designing resilient fallback states, lazy-loading optimizations, and high-performance Web Vitals out of the box.
+                  </p>
+                </div>
               </div>
             </div>
           </TiltCard>

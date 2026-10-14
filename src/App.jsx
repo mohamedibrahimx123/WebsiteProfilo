@@ -14,10 +14,10 @@ import CustomCursor from "./components/CustomCursor";
 const PageWrapper = ({ children }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 15 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -15 }}
-      transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+      exit={{ opacity: 0, y: -12 }}
+      transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
     >
       {children}
     </motion.div>
@@ -32,6 +32,7 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
         <Route path="/skills" element={<PageWrapper><SkillsPage /></PageWrapper>} />
+        <Route path="/tech-stack" element={<PageWrapper><SkillsPage /></PageWrapper>} />
         <Route path="/projects" element={<PageWrapper><ProjectsPage /></PageWrapper>} />
         <Route path="/certificates" element={<PageWrapper><CertificatesPage /></PageWrapper>} />
         <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
@@ -44,7 +45,7 @@ function AnimatedRoutes() {
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-[#030303] text-white selection:bg-cyan-500 selection:text-black">
+      <div className="min-h-screen bg-[#030303] text-white selection:bg-cyan-400 selection:text-black">
         <CustomCursor />
         <Navbar />
         <AnimatedRoutes />
