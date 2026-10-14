@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Project from "./Project";
 
-import ImageProjectYonnesPerfumes from "../assets/yonnes_perfumes.png";
-import ImageProjectFood from "../assets/Food.png";
-import ImageProjectMobileStore from "../assets/Delivery-dashboard.png";
-import ImageProjectDocTime from "../assets/Task-management.png";
-import ImageProjectStatCode from "../assets/Screenshot 2026-03-18 215234.png";
+import ImageProjectDocTime from "../assets/project_doctime.jpg";
+import ImageProjectStatCode from "../assets/project_statcode.jpg";
+import ImageProjectYonnesPerfumes from "../assets/project_younis.jpg";
+import ImageProjectMobileStore from "../assets/project_mobile_store.jpg";
+import ImageProjectFood from "../assets/project_dessert.jpg";
 
 function Projects() {
   const [filter, setFilter] = useState("all");

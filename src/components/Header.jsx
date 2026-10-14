@@ -5,7 +5,7 @@ import { FaExternalLinkAlt, FaRocket, FaCodeBranch, FaShieldAlt } from "react-ic
 import ThreeScene from "./ThreeScene";
 import TiltCard from "./TiltCard";
 
-import heroPhoto from "../assets/WhatsApp Image 2026-03-18 at 10.50.36 PM.jpeg";
+import heroPhoto from "../assets/Neon Noir Portrait of a Suited Man.png";
 
 function Header() {
   const [showIntro, setShowIntro] = useState(() => {
