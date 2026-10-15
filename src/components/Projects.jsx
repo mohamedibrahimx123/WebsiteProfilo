@@ -40,7 +40,7 @@ function Projects() {
       github: null, // Corporate official website
       description:
         "Official corporate platform for STAT-Code software company. Engineered high-performance modern UI/UX, responsive brand layout, and scalable component architecture as Team Leader.",
-      tech: ["Next.js", "React", "Tailwind CSS", "Framer Motion", "Vercel"],
+      tech: ["HTML5", "CSS3", "JS"],
       features: [
         "Corporate Brand Showcase",
         "Performance Tuning",
