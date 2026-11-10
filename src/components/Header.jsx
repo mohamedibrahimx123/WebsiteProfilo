@@ -101,7 +101,7 @@ function Header() {
               <div className="relative text-left px-4">
                 <span className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-1.5 font-bold tracking-widest text-cyan-400 text-xs uppercase">
                   <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
-                  Senior Frontend Engineer
+                  Full Stack Engineer
                 </span>
                 <h1 className="mt-4 text-3xl font-black leading-tight sm:text-5xl bg-gradient-to-r from-white via-cyan-100 to-indigo-200 bg-clip-text text-transparent">
                   Mohamed Ibrahim
@@ -110,7 +110,7 @@ function Header() {
                   Team Leader @ STAT-Code
                 </p>
                 <p className="mt-3 max-w-[480px] text-white/70 leading-relaxed text-sm">
-                  Architecting production-ready real-time systems, scalable frontend architecture, and high-performance digital products.
+                  Architecting production-ready real-time systems, scalable full-stack architecture, and high-performance digital products.
                 </p>
 
                 <div className="mt-6">
@@ -168,7 +168,7 @@ function Header() {
               variants={itemVariants}
               className="mt-5 max-w-2xl text-base sm:text-lg text-white/70 leading-relaxed font-normal"
             >
-              I am <strong className="text-white font-bold">Mohamed Ibrahim</strong>, Senior Frontend Engineer and <strong className="text-cyan-300 font-bold">Team Leader at STAT-Code</strong>. I architect production-ready web platforms, real-time synchronization systems using <span className="text-cyan-400 font-semibold">gRPC Protocols</span>, and resilient multi-category e-commerce solutions.
+              I am <strong className="text-white font-bold">Mohamed Ibrahim</strong>, Full Stack Engineer and <strong className="text-cyan-300 font-bold">Team Leader at STAT-Code</strong>. I architect production-ready web platforms, real-time synchronization systems using <span className="text-cyan-400 font-semibold">gRPC Protocols</span>, and resilient multi-category e-commerce solutions.
             </motion.p>
 
             {/* CTAs */}

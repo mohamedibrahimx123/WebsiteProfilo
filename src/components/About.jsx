@@ -42,10 +42,10 @@ function About() {
             👨‍💻 Leadership & Background
           </div>
           <h2 className="mt-4 text-3xl sm:text-5xl font-black tracking-tight bg-gradient-to-r from-white via-cyan-100 to-indigo-100 bg-clip-text text-transparent">
-            Senior Frontend Engineer & <span className="text-cyan-400">Team Leader</span>
+            Full Stack Engineer & <span className="text-cyan-400">Team Leader</span>
           </h2>
           <p className="mt-5 text-white/75 leading-relaxed text-base sm:text-lg font-normal">
-            Currently leading frontend engineering at <strong className="text-white font-bold">STAT-Code</strong>. I specialize in turning complex product specifications into ultra-fast, scalable, and responsive web applications with a production-first mindset.
+            Currently leading engineering at <strong className="text-white font-bold">STAT-Code</strong>. I specialize in turning complex product specifications into ultra-fast, scalable, and responsive Full-Stack web applications with a production-first mindset.
           </p>
         </motion.div>
 
@@ -87,7 +87,7 @@ function About() {
                 <div>
                   <div className="text-xs font-black uppercase text-cyan-300 tracking-wider">Engineering Leadership</div>
                   <p className="mt-2 text-xs text-white/65 leading-relaxed font-semibold">
-                    Mentoring frontend engineers, conducting rigorous code reviews, and maintaining consistent architectural patterns.
+                    Mentoring software engineers, conducting rigorous code reviews, and maintaining consistent architectural patterns.
                   </p>
                 </div>
 
@@ -126,13 +126,13 @@ function About() {
                     <FaCode />
                     <span>Core Focus</span>
                   </div>
-                  <h4 className="mt-3 text-lg font-black text-white">Full-Spectrum Frontend</h4>
+                  <h4 className="mt-3 text-lg font-black text-white">Full-Stack Architecture</h4>
                   <p className="mt-2 text-sm text-white/65 leading-relaxed">
-                    Extensive experience developing scalable user interfaces with React, Next.js, and Angular, backed by TypeScript and clean state management.
+                    Extensive experience architecting scalable full-stack web applications with Next.js, React, Node.js, Express, and PostgreSQL, backed by TypeScript and clean layered architecture.
                   </p>
                 </div>
                 <div className="mt-5 flex flex-wrap gap-1.5">
-                  {["React.js", "Next.js", "Angular", "TypeScript"].map((t) => (
+                  {["Next.js", "Node.js", "Express", "PostgreSQL", "React", "TypeScript"].map((t) => (
                     <span key={t} className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-bold text-white/80">
                       {t}
                     </span>
@@ -206,7 +206,7 @@ function About() {
               <span className="text-xs font-black uppercase tracking-widest text-cyan-400">🎓 Education</span>
               <h4 className="mt-2 text-lg font-black text-white">B.Sc. in Computer Science</h4>
               <p className="mt-1 text-sm text-white/60">
-                6th of October University (Graduating 2025)
+                6th of October University (Graduated 2026)
               </p>
               <div className="mt-4 text-xs text-white/70 font-semibold leading-relaxed">
                 Strong academic foundation in Data Structures, Algorithms, Software Engineering, Database Systems, and Object-Oriented Programming (OOP).

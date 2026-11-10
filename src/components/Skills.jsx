@@ -3,11 +3,13 @@ import { motion } from "framer-motion";
 import { 
   FaReact, FaAngular, FaJsSquare, FaHtml5, FaCss3Alt, 
   FaGitAlt, FaGithub, FaAws, FaRocket, FaCheckDouble, 
-  FaSyncAlt, FaLayerGroup, FaCode, FaTools 
+  FaSyncAlt, FaLayerGroup, FaCode, FaTools, FaServer, 
+  FaDatabase, FaShieldAlt, FaKey, FaNetworkWired 
 } from "react-icons/fa";
 import { 
   SiTypescript, SiNextdotjs, SiRedux, SiJest, 
-  SiTailwindcss, SiBootstrap, SiVite, SiVitest 
+  SiTailwindcss, SiBootstrap, SiVite, SiVitest,
+  SiPostgresql, SiExpress, SiNodedotjs, SiJsonwebtokens 
 } from "react-icons/si";
 import TiltCard from "./TiltCard";
 
@@ -39,6 +41,19 @@ const TECH_CATEGORIES = [
     ]
   },
   {
+    id: "backend_db",
+    name: "Backend & Database Engineering",
+    icon: <FaServer className="text-emerald-400" />,
+    skills: [
+      { name: "Node.js & Express.js", desc: "Layered architecture, REST APIs, asynchronous event loop", level: "Advanced" },
+      { name: "PostgreSQL", desc: "Relational database modeling, complex SQL queries, indexing, integrity", level: "Advanced" },
+      { name: "Authentication & Authorization (RBAC)", desc: "Role-Based Access Control, session security, password hashing with bcrypt", level: "Expert" },
+      { name: "JWT (JSON Web Tokens)", desc: "Stateless authentication, access & refresh token lifecycle, secure payloads", level: "Advanced" },
+      { name: "CRUD Operations & REST APIs", desc: "Resource modeling, Zod request validation, Swagger documentation, status codes", level: "Expert" },
+      { name: "CORS Security & API Hardening", desc: "Cross-Origin Resource Sharing policies, Helmet protection, rate limiting", level: "Advanced" },
+    ]
+  },
+  {
     id: "state_realtime",
     name: "State & Real-Time Protocols",
     icon: <FaSyncAlt className="text-indigo-400" />,
@@ -65,14 +80,14 @@ const TECH_CATEGORIES = [
   },
   {
     id: "devops_perf",
-    name: "Performance & DevOps",
+    name: "Performance, CDN & DevOps",
     icon: <FaRocket className="text-pink-400" />,
     skills: [
+      { name: "CDN & Edge Delivery", desc: "Content Delivery Networks, asset caching strategies, Cloudflare, Edge routing", level: "Advanced" },
       { name: "Lazy Loading & Code Splitting", desc: "Dynamic imports, bundle optimization, tree-shaking", level: "Advanced" },
       { name: "Performance Optimization", desc: "Core Web Vitals, memoization, render profiling", level: "Expert" },
       { name: "Git & GitHub", desc: "Gitflow, merge conflicts, interactive rebasing, actions", level: "Expert" },
       { name: "GitHub Pages & Vercel", desc: "Automated branch deployment, custom domains, CI", level: "Expert" },
-      { name: "AWS Cloud", desc: "S3 hosting, CloudFront CDN, serverless configurations", level: "Proficient" },
       { name: "Workflow & CI/CD Deployment", desc: "Automated pipelines, build validation, linting gates", level: "Advanced" },
     ]
   }
@@ -106,7 +121,7 @@ function Skills() {
             Tech <span className="text-cyan-400">Stack</span>
           </h2>
           <p className="mt-4 text-white/75 leading-relaxed text-base sm:text-lg font-normal">
-            A comprehensive overview of my core engineering capabilities, real-time protocols, state management libraries, and production-tested standards.
+            A comprehensive overview of my core engineering capabilities, backend & database architecture, real-time protocols, state management libraries, and production-tested standards.
           </p>
         </motion.div>
 
@@ -146,25 +161,29 @@ function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5 }}
-              className="rounded-3xl border border-white/5 bg-[#090b14]/70 p-6 sm:p-8 backdrop-blur-xl shadow-2xl"
+              className="rounded-3xl border border-white/5 bg-[#0a0d16]/60 p-6 sm:p-8 backdrop-blur-xl shadow-2xl"
             >
+              {/* Category Header */}
               <div className="flex items-center gap-3 border-b border-white/5 pb-4">
-                <div className="text-xl">{category.icon}</div>
-                <h3 className="text-lg sm:text-xl font-black text-white">{category.name}</h3>
+                <div className="text-2xl">{category.icon}</div>
+                <h3 className="text-xl font-black text-white">{category.name}</h3>
               </div>
 
+              {/* Skills Grid */}
               <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {category.skills.map((skill) => (
                   <TiltCard key={skill.name} maxRotation={6} className="h-full">
-                    <div className="h-full rounded-2xl border border-white/5 bg-white/5 p-4 transition-all hover:border-cyan-400/30 hover:bg-cyan-500/[0.04] flex flex-col justify-between">
+                    <div className="group h-full rounded-2xl border border-white/5 bg-white/[0.02] p-4 transition-all duration-300 hover:border-cyan-400/30 hover:bg-cyan-500/[0.04] flex flex-col justify-between">
                       <div>
                         <div className="flex items-center justify-between gap-2">
-                          <h4 className="text-sm font-black text-white">{skill.name}</h4>
-                          <span className="text-[10px] font-extrabold uppercase tracking-wider text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 px-2 py-0.5 rounded-full shrink-0">
+                          <h4 className="text-sm font-black text-white group-hover:text-cyan-300 transition-colors">
+                            {skill.name}
+                          </h4>
+                          <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-white/60 group-hover:border-cyan-400/30 group-hover:text-cyan-300 transition-colors">
                             {skill.level}
                           </span>
                         </div>
-                        <p className="mt-2 text-xs text-white/60 leading-relaxed font-semibold">
+                        <p className="mt-2 text-xs text-white/65 leading-relaxed font-normal">
                           {skill.desc}
                         </p>
                       </div>
@@ -175,40 +194,6 @@ function Skills() {
             </motion.div>
           ))}
         </div>
-
-        {/* Engineering Philosophy Banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-12"
-        >
-          <TiltCard maxRotation={3}>
-            <div className="rounded-3xl border border-cyan-400/20 bg-gradient-to-r from-cyan-950/20 via-[#0a0d16] to-indigo-950/20 p-6 sm:p-8 backdrop-blur-xl">
-              <div className="grid gap-6 sm:grid-cols-3 text-center sm:text-left">
-                <div>
-                  <div className="text-xs font-black uppercase text-cyan-400 tracking-wider">⚡ Real-Time Architecture</div>
-                  <p className="mt-2 text-xs text-white/65 leading-relaxed font-semibold">
-                    Specialized in gRPC and WebSocket protocols ensuring concurrent users experience instantaneous data updates without latency.
-                  </p>
-                </div>
-                <div>
-                  <div className="text-xs font-black uppercase text-indigo-400 tracking-wider">🛡️ Clean Code & Reviewing</div>
-                  <p className="mt-2 text-xs text-white/65 leading-relaxed font-semibold">
-                    Enforcing maintainable code standards, OOP principles, and robust unit testing with Jest, Vitest, and RTL.
-                  </p>
-                </div>
-                <div>
-                  <div className="text-xs font-black uppercase text-pink-400 tracking-wider">🚀 Production-Ready Thinking</div>
-                  <p className="mt-2 text-xs text-white/65 leading-relaxed font-semibold">
-                    Designing resilient fallback states, lazy-loading optimizations, and high-performance Web Vitals out of the box.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </TiltCard>
-        </motion.div>
       </div>
     </section>
   );

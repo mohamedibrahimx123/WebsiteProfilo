@@ -60,7 +60,7 @@ function Footer() {
         </div>
 
         <div className="mt-6 text-center text-sm text-white/70">
-          <span className="font-extrabold text-white">Mohamed Ibrahim</span> — Senior Frontend Engineer &{" "}
+          <span className="font-extrabold text-white">Mohamed Ibrahim</span> — Full Stack Engineer &{" "}
           <a
             href="https://statcode.tech/"
             target="_blank"
