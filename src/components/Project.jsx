@@ -53,20 +53,41 @@ function Project({ project }) {
               )}
 
               {/* Hover Action Buttons */}
-              <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="flex gap-2.5 scale-95 group-hover:scale-100 transition-transform duration-300">
+              <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/65 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
+                <div className="flex flex-wrap items-center justify-center gap-2 scale-95 group-hover:scale-100 transition-transform duration-300">
                   {project.live && (
                     <a
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-xs font-black uppercase tracking-wider text-black shadow-lg transition-transform hover:scale-105"
+                      className="inline-flex items-center gap-1.5 rounded-xl bg-white px-3.5 py-2 text-xs font-black uppercase tracking-wider text-black shadow-lg transition-transform hover:scale-105"
                     >
                       <FaExternalLinkAlt /> Live Demo
                     </a>
                   )}
 
-                  {project.github ? (
+                  {project.githubFrontend && project.githubBackend ? (
+                    <>
+                      <a
+                        href={project.githubFrontend}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-xl bg-[#121622] border border-white/10 px-3 py-2 text-xs font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105"
+                        title="Frontend Repository"
+                      >
+                        <FaGithub /> Frontend
+                      </a>
+                      <a
+                        href={project.githubBackend}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-xl bg-[#121622] border border-white/10 px-3 py-2 text-xs font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105"
+                        title="Backend Repository"
+                      >
+                        <FaGithub /> Backend
+                      </a>
+                    </>
+                  ) : project.github ? (
                     <a
                       href={project.github}
                       target="_blank"
@@ -143,7 +164,30 @@ function Project({ project }) {
                 <span className="text-xs text-white/40 font-semibold">Production Platform</span>
               )}
 
-              {project.github ? (
+              {project.githubFrontend && project.githubBackend ? (
+                <div className="flex items-center gap-1.5 text-xs font-bold text-white/70">
+                  <FaGithub className="text-[11px] text-white/60" />
+                  <a
+                    href={project.githubFrontend}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-cyan-400 transition-colors"
+                    title="Frontend Repository"
+                  >
+                    Front
+                  </a>
+                  <span className="text-white/25">/</span>
+                  <a
+                    href={project.githubBackend}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-cyan-400 transition-colors"
+                    title="Backend Repository"
+                  >
+                    Back
+                  </a>
+                </div>
+              ) : project.github ? (
                 <a
                   href={project.github}
                   target="_blank"

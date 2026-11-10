@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Project from "./Project";
 
+import ImageProjectTaskManagement from "../assets/project_task_management.jpg";
 import ImageProjectDocTime from "../assets/project_doctime.jpg";
 import ImageProjectStatCode from "../assets/project_statcode.jpg";
 import ImageProjectYonnesPerfumes from "../assets/project_younis.jpg";
@@ -12,6 +13,36 @@ function Projects() {
   const [filter, setFilter] = useState("all");
 
   const projects = [
+    {
+      id: "task-management",
+      category: "fullstack",
+      badge: "Full-Stack SaaS",
+      title: "Full-Stack Task Management Platform",
+      live: "https://task-management-frontend-vert-delta.vercel.app/",
+      github: "https://github.com/mohamedibrahimx123/task-management-frontend",
+      githubFrontend: "https://github.com/mohamedibrahimx123/task-management-frontend",
+      githubBackend: "https://github.com/mohamedibrahimx123/task-managemnet",
+      description:
+        "Full-stack task management platform built using Next.js and Node.js/TypeScript with PostgreSQL. Features secure JWT authentication, Role-Based Access Control (RBAC), Zod-validated REST APIs with Swagger documentation, responsive UI with Dark/Light modes, and bilingual Arabic RTL / English localization.",
+      tech: [
+        "Next.js",
+        "Node.js",
+        "Express",
+        "TypeScript",
+        "PostgreSQL",
+        "Tailwind CSS",
+        "JWT",
+        "Swagger"
+      ],
+      features: [
+        "JWT & RBAC Security",
+        "PostgreSQL & REST APIs",
+        "Swagger & Zod Validation",
+        "Arabic RTL & Dark Mode"
+      ],
+      image: ImageProjectTaskManagement,
+      accent: "#6366f1"
+    },
     {
       id: "doctime",
       category: "realtime",
@@ -143,7 +174,7 @@ function Projects() {
             Featured <span className="text-cyan-400">Projects</span>
           </h2>
           <p className="mt-4 text-white/75 leading-relaxed text-base sm:text-lg font-normal">
-            Real-world web applications spanning real-time gRPC medical systems, multi-category e-commerce platforms, corporate architecture, and Angular products.
+            Real-world web applications spanning full-stack SaaS architectures, real-time gRPC systems, multi-category e-commerce platforms, corporate architecture, and Angular products.
           </p>
         </motion.div>
 
@@ -151,6 +182,7 @@ function Projects() {
         <div className="mt-8 flex flex-wrap gap-2">
           {[
             { id: "all", label: "All Projects" },
+            { id: "fullstack", label: "Full-Stack / SaaS" },
             { id: "realtime", label: "Real-Time / Production" },
             { id: "ecommerce", label: "E-Commerce" },
             { id: "corporate", label: "Corporate" },
